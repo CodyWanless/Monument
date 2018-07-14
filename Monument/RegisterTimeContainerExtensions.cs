@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Monument
 {
-    public static class RegisterTimeContainerExtensions
+    internal static class RegisterTimeContainerExtensions
     {
         public static IRegisterTimeContainer Register<TService, TImplementation>(this IRegisterTimeContainer container)
             where TImplementation : TService

@@ -7,7 +7,7 @@ using SI = SimpleInjector;
 
 namespace Monument.SimpleInjector
 {
-    public sealed class ContainerAdapter : IRegisterTimeContainer, IRuntimeContainer
+    public sealed class ContainerAdapter : IRegisterTimeContainer, IServiceProvider
     {
         private readonly Container container;
 
@@ -28,7 +28,7 @@ namespace Monument.SimpleInjector
             return this;
         }
 
-        public IRuntimeContainer ToRuntimeContainer()
+        public IServiceProvider ToRuntimeContainer()
         {
             container.Verify();
             return this;
@@ -57,5 +57,8 @@ namespace Monument.SimpleInjector
         }
 
         public T Resolve<T>() where T: class => container.GetInstance<T>();
+
+        public object GetService(Type serviceType) =>
+            container.GetInstance(serviceType);
     }
 }
